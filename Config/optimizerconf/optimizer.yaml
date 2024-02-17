@@ -1,0 +1,32 @@
+selected: ${.adam}
+
+adam:
+  _target_: tensorflow.keras.optimizers.Adam
+  ^learning_rate:
+    name: LR
+    value:
+    type: float
+    step:
+    log: True
+    domain:
+      - 0.00001
+      - 0.004
+  weight_decay: !!null
+  ^beta_1:
+    name: Beta1
+    value:
+    type: float
+    step:
+    log:
+    domain:
+      - 0.8
+      - 0.9
+  ^beta_2:
+    name: Beta2
+    value:
+    type: float
+    step:
+    log: True
+    domain:
+      - 0.9
+      - 0.999

@@ -1,0 +1,15 @@
+defaults:
+  - layersconf: layers
+  - regularizersconf: regularizers
+
+blocks:
+  2DConvMaxPool:
+    - ${hiddenconf.layersconf.Conv2D}
+    - ${hiddenconf.layersconf.MaxPooling2D}
+  DenseDrop:
+    - ${hiddenconf.layersconf.Dense}
+    - ${hiddenconf.layersconf.Dropout}
+  Flatten:
+    - ${hiddenconf.layersconf.Flatten}
+  GlobAvgPooling2D:
+    - ${hiddenconf.layersconf.GlobalAveragePooling2D}

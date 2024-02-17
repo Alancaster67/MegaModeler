@@ -1,0 +1,16 @@
+defaults:
+  - layersconf: layers
+
+blocks:
+  ImagePreprocessWORescaling:
+    - ${preprocessconf.layersconf.Random_Flip}
+    - ${preprocessconf.layersconf.Random_Rotation}
+    - ${preprocessconf.layersconf.Random_Brightness}
+    - ${preprocessconf.layersconf.Random_Contrast}
+  ImagePreprocess:
+    - ${preprocessconf.layersconf.Random_Flip}
+    - ${preprocessconf.layersconf.Random_Rotation}
+    - ${preprocessconf.layersconf.Random_Brightness}
+    - ${preprocessconf.layersconf.Random_Contrast}
+    - ${preprocessconf.layersconf.rescaling_layer}
+  

@@ -1,0 +1,15 @@
+BinaryOut:
+  _target_: tensorflow.keras.layers.Dense
+  ^units:
+    name: OutUnits
+    value:
+    type: int
+    domain:
+      - 2
+      - 2
+  ^activation:
+    name: OutAct
+    value:
+    type: cat
+    domain:
+      - sigmoid

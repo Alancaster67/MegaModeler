@@ -1,0 +1,100 @@
+#select a below architecture to use.
+selected: ${.Convnet}
+
+
+#Define a model architecutre using model building blocks defined in other respective config files.
+#The block interpolation, mincount, and maxcount values must be specified under each block in the architecture.
+#Optuna will select a value between min and max count for each block and repeat it in the architecture that many times.
+#A mincount of 0 means that a block is optional in the architecture.
+#The condition mincount == maxcount == x means that that the block will be repeated x number of times.
+#The key word 'pretrained' must be placed under the block if that block is a pretrained base model.
+#The keyword 'fine_tuning' can be placed under the 'pretrained' keyword of a base model block to specify if fine tuning will be done.
+#If a base model will be fine tuned unfreeze_top_xlayers, additional_epochs, lr_divisor must be specified child params of the 'fine_tuning' keyword.
+
+MobileNetV2Pretrained_wFineTune:
+  Preprocess:
+    block: ${preprocessconf.blocks.ImagePreprocessWORescaling}
+    mincount: 1
+    maxcount: 1
+    
+  Detector:
+    block: ${detectorconf.blocks.MobileNetV2}
+    pretrained:
+      fine_tuning:
+        unfreeze_top_xlayers:  50
+        additional_epochs: 25
+        lr_divisor: 10
+    mincount: 1
+    maxcount: 1
+    
+  GlobAvgPooling2D:
+    block: ${hiddenconf.blocks.GlobAvgPooling2D}
+    mincount: 1
+    maxcount: 1
+    
+  Dense:
+    block: ${hiddenconf.blocks.DenseDrop}
+    mincount: 1
+    maxcount: 3
+  
+  Output:
+    block: ${outputconf.blocks.BinaryClass}
+    mincount: 1
+    maxcount: 1    
+
+Convnet:
+  Preprocess:
+    block: ${preprocessconf.blocks.ImagePreprocess}
+    mincount: 1
+    maxcount: 1
+    
+  Conv:
+    block: ${hiddenconf.blocks.2DConvMaxPool}
+    mincount: 4
+    maxcount: 4
+    
+  Flatten:
+    block: ${hiddenconf.blocks.Flatten}
+    mincount: 1
+    maxcount: 1
+    
+  Dense:
+    block: ${hiddenconf.blocks.DenseDrop}
+    mincount: 1
+    maxcount: 1
+    
+  Output:
+    block: ${outputconf.blocks.BinaryClass}
+    mincount: 1
+    maxcount: 1
+
+ResNet50Pretrained_wFineTune:
+  Preprocess:
+    block: ${preprocessconf.blocks.ImagePreprocessWORescaling}
+    mincount: 1
+    maxcount: 1
+    
+  Detector:
+    block: ${detectorconf.blocks.ResNet50}
+    pretrained:
+      fine_tuning:
+        unfreeze_top_xlayers:  50
+        additional_epochs: 25
+        lr_divisor: 10
+    mincount: 1
+    maxcount: 1
+    
+  GlobAvgPooling2D:
+    block: ${hiddenconf.blocks.GlobAvgPooling2D}
+    mincount: 1
+    maxcount: 1
+    
+  Dense:
+    block: ${hiddenconf.blocks.DenseDrop}
+    mincount: 1
+    maxcount: 3
+
+  Output:
+    block: ${outputconf.blocks.BinaryClass}
+    mincount: 1
+    maxcount: 1    

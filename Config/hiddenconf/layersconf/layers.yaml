@@ -1,0 +1,80 @@
+BatchNorm:
+  _target_: tensorflow.keras.layers.BatchNormalization
+
+Conv2D:
+  _target_: tensorflow.keras.layers.Conv2D
+  ^filters:
+    name: ConvFilters
+    value:
+    type: int
+    step:
+    log: False
+    domain:
+      - 4
+      - 64
+  ^kernel_size:
+    name: ConvKerS
+    value:
+    type: int
+    step: 2
+    log: False
+    domain:
+      - 3
+      - 9
+  ^padding:
+    name: ConvPad
+    value:
+    type: cat
+    domain:
+      - same
+      - valid
+  ^activation:
+    name: ConvAct
+    value:
+    type: cat
+    domain:
+      - relu
+      - selu
+      - mish
+  kernel_regularizer: ${hiddenconf.regularizersconf.L1L2_regularizer}
+
+Flatten:
+  _target_: tensorflow.keras.layers.Flatten
+
+MaxPooling2D:
+  _target_: tensorflow.keras.layers.MaxPooling2D
+
+Dense:
+  _target_: tensorflow.keras.layers.Dense
+  ^units:
+    name: DenseUnits
+    value:
+    type: int
+    step:
+    log: False
+    domain:
+      - 18
+      - 128
+  ^activation:
+    name: DenseAct
+    value:
+    type: cat
+    domain:
+      - relu
+      - selu
+      - mish
+
+Dropout:
+  _target_: tensorflow.keras.layers.Dropout
+  ^rate:
+    name: Dropout
+    value:
+    type: float
+    step:
+    log: False
+    domain:
+      - 0.0
+      - 0.6
+
+GlobalAveragePooling2D:
+  _target_: tensorflow.keras.layers.GlobalAveragePooling2D

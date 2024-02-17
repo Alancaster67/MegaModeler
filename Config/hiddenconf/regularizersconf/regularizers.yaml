@@ -1,0 +1,20 @@
+L1L2_regularizer:
+  _target_: tensorflow.keras.regularizers.L1L2
+  ^l1:
+    name: l1
+    value:
+    type: float
+    step:
+    log: False
+    domain:
+      - 0.0
+      - 0.0
+  ^l2:
+    name: l2
+    value:
+    type: float
+    step:
+    log: False
+    domain:
+      - 0.003
+      - 0.003

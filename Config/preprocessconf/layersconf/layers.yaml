@@ -1,0 +1,60 @@
+input_layer:
+  _target_: tensorflow.keras.layers.InputLayer
+  input_shape: ${dataconf.input_shape_tuple}
+  dtype: uint8
+
+input_layer_int8:
+  _target_: tensorflow.keras.layers.InputLayer
+  input_shape: ${dataconf.input_shape_tuple}
+  dtype: int8
+
+rescaling_layer:
+  _target_: tensorflow.keras.layers.Rescaling
+  scale: ${eval:'1/255'}
+
+Random_Flip:
+  _target_: tensorflow.keras.layers.RandomFlip
+  ^mode:
+    name: Randflip
+    value:
+    type: cat
+    domain:
+      - horizontal_and_vertical
+      - horizontal
+      - vertical
+
+Random_Rotation:
+  _target_: tensorflow.keras.layers.RandomRotation
+  ^factor:
+    name: RandRot
+    value:
+    type: float
+    step:
+    log: False
+    domain:
+      - 0.0
+      - 0.0
+
+Random_Brightness:
+  _target_: tensorflow.keras.layers.RandomBrightness
+  ^factor:
+    name: RandBright
+    value:
+    type: float
+    step:
+    log: False
+    domain:
+      - 0.0
+      - 0.4
+
+Random_Contrast:
+  _target_: tensorflow.keras.layers.RandomContrast
+  ^factor:
+    name: RandCont
+    value:
+    type: float
+    step:
+    log: False
+    domain:
+      - 0.0
+      - 0.4

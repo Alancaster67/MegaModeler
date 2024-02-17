@@ -1,0 +1,27 @@
+#Relative file paths to directories containing respective datasets
+train_dataset: ./Data/Train
+validation_dataset: ./Data/Validation
+num_classes: 2
+dtype: unit8
+
+input_shape:
+  - 258
+  - 258
+  - 3
+
+#Necessary to properly instantiate a tuple for
+input_shape_tuple: 
+  _target_: builtins.tuple
+  _args_:
+    - ${dataconf.input_shape}
+
+^batch_size:
+  name: BatSize
+  value:
+  type: int
+  step:
+  log: False
+  domain:
+    - 2
+    - 60
+  

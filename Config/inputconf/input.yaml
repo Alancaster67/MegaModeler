@@ -1,0 +1,3 @@
+input_layer:
+  _target_: tensorflow.keras.Input
+  shape: ${dataconf.input_shape_tuple}

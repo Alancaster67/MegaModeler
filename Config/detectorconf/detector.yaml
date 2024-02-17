@@ -1,0 +1,18 @@
+defaults:
+  - baseconf: base
+
+#^Detector_selector:
+#  name: Basemodel
+#  value:
+#  type: cat
+# domain:
+#    - ${.blocks.MobileNetV2}
+#    - ${.blocks.ResNet50}
+
+blocks:
+  MobileNetV2:
+    - ${detectorconf.baseconf.MobileNetV2_pre}
+    - ${detectorconf.baseconf.MobileNetV2_base}
+  ResNet50:
+    - ${detectorconf.baseconf.ResNet50_pre}
+    - ${detectorconf.baseconf.ResNet50_base}

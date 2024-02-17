@@ -1,0 +1,19 @@
+MobileNetV2_base:
+  _target_: tensorflow.keras.applications.mobilenet_v2.MobileNetV2
+  input_shape: ${dataconf.input_shape_tuple}
+  include_top: False
+  weights: imagenet
+  
+MobileNetV2_pre:
+  _target_: tensorflow.keras.applications.mobilenet_v2.preprocess_input
+  _partial_: True
+
+ResNet50_base:
+  _target_: tensorflow.keras.applications.resnet50.ResNet50
+  input_shape: ${dataconf.input_shape_tuple}
+  include_top: False
+  weights: imagenet
+  
+ResNet50_pre:
+  _target_: tensorflow.keras.applications.resnet50.preprocess_input
+  _partial_: True

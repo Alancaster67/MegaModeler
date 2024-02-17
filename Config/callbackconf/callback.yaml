@@ -1,0 +1,12 @@
+selected:
+  - ${callbackconf.ModelCheckpoint}
+
+ReduceLROnPlateau:
+  _target_: tensorflow.keras.callbacks.ReduceLROnPlateau
+
+ModelCheckpoint: #define filepath in the code
+  _target_: tensorflow.keras.callbacks.ModelCheckpoint
+  _partial_: True
+  monitor: val_accuracy
+  initial_value_threshold: 0.92
+  save_best_only: True

@@ -1,0 +1,6 @@
+defaults:
+  - layersconf: layers
+
+blocks:
+  BinaryClass:
+    - ${outputconf.layersconf.BinaryOut}

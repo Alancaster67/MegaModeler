@@ -1,0 +1,32 @@
+#Default list will include all possible child config data
+#The finalconfig represents the configuration that will be used after
+#the OptunaCNN.py script is finished with necessary interpolations
+
+#Editing this file is will likely lead to errors running OptunaCNN.py
+
+defaults:
+  - architectureconf: architecture
+  - inputconf: input
+  - dataconf: data
+  - preprocessconf: preprocess
+  - detectorconf: detector
+  - hiddenconf: hidden
+  - outputconf: output
+  - metricconf: metric
+  - trainingconf: training
+  - callbackconf: callback
+  - optimizerconf: optimizer
+  - lossconf: loss
+  - optunaconf: optuna
+
+finalconf:
+  architecture: ${architectureconf.selected} 
+  input: ${inputconf.input_layer}
+  data: ${dataconf}
+  metric: ${metricconf}
+  training: ${trainingconf}
+  callbacks: ${callbackconf.selected}
+  optimizer: ${optimizerconf.selected}
+  loss: ${lossconf.selected}
+  transfer_learning:
+  optuna: ${optunaconf}
