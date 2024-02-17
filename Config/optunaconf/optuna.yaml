@@ -1,5 +1,5 @@
 #configure optuna specific settings here
-study_name: DogbowlRawCNN_functional
+study_name: Study_name
 trials: 200
 storage: sqlite:///optuna_sqlite.db
 direction: maximize
