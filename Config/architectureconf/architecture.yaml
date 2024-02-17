@@ -50,7 +50,7 @@ Convnet:
     
   Conv:
     block: ${hiddenconf.blocks.2DConvMaxPool}
-    mincount: 4
+    mincount: 1
     maxcount: 4
     
   Flatten:
@@ -61,7 +61,7 @@ Convnet:
   Dense:
     block: ${hiddenconf.blocks.DenseDrop}
     mincount: 1
-    maxcount: 1
+    maxcount: 4
     
   Output:
     block: ${outputconf.blocks.BinaryClass}
